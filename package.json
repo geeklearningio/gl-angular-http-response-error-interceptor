@@ -1,0 +1,7 @@
+{
+  "name": "gl-angular-http-response-error-interceptor",
+  "version": "0.0.1",
+  "description": "Geek Learning Http Response Error Interceptor for Angular applications.",
+  "author": "Geek Learning",
+  "license": "MIT"
+}

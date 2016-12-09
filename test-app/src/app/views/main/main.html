@@ -1,0 +1,15 @@
+﻿<ion-header-bar class="bar-positive">
+    <h1 class="title">Test App</h1>
+</ion-header-bar>
+
+<ion-content class="padding text-center">
+
+    <ion-spinner class="spinner-positive" icon="spiral" ng-show="main.isLoading"></ion-spinner>
+
+
+    <div ng-show="!main.isLoading">
+        <h1>Test Http Response Error Interceptor</h1>
+        <button ng-click="main.test()" class="button button-positive">Test</button>
+    </div>
+
+</ion-content>
