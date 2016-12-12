@@ -4,4 +4,6 @@
 
 export interface IHttpResponseErrorFilter {
     responseError(response: any): angular.IPromise<any>;
+    setUrlFilter(urlFilter: string);
+    setStatusFilters(statusFilters: Array<number>);
 }

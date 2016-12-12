@@ -1,5 +1,5 @@
 ﻿'use strict';
-import {HttpResponseErrorRetryFilter} from "./Filters/HttpResponseErrorRetryFilter";
+import {HttpResponseErrorRetryFilterFactory} from "./Filters/HttpResponseErrorRetryFilter";
 import {IHttpResponseErrorFilter} from "./Filters/IHttpResponseErrorFilter.d";
 
 export class GLAngularHttpResponseErrorInterceptor implements  angular.IHttpInterceptor {
@@ -9,7 +9,10 @@ export class GLAngularHttpResponseErrorInterceptor implements  angular.IHttpInte
     constructor() {
     }
 
-    public addFilter(filter: IHttpResponseErrorFilter) {
+    public addFilter(filter: IHttpResponseErrorFilter, url: string = '*') {
+        if (url !== '*') {
+            filter.setUrlFilter(url);
+        }
         this.filters.push(filter);
     }
 
@@ -21,6 +24,6 @@ export class GLAngularHttpResponseErrorInterceptor implements  angular.IHttpInte
 declare var exports: any;
 
 exports = angular.module("gl-angular-http-response-error-interceptor", [])
-    .service('httpResponseErrorRetryFilter', HttpResponseErrorRetryFilter)
+    .service('httpResponseErrorRetryFilterFactory', HttpResponseErrorRetryFilterFactory)
     .service('glAngularHttpResponseErrorInterceptor', GLAngularHttpResponseErrorInterceptor);
 
