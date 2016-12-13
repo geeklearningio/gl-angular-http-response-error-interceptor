@@ -16,12 +16,11 @@ export class RunBlock {
         httpResponseErrorRetryFilter.config(delayDuration, nbRetries);
 
         var filterConfig: IGLAngularHttpResponseErrorInterceptorFilter = {
-          filter: httpResponseErrorRetryFilter
+            filter: httpResponseErrorRetryFilter,
+            url: 'https://api.github.com/users/octocat',
+            status: [403, 404]
         };
 
-        // you can also specify the url match filter directly on the filter
-        //httpResponseErrorRetryFilter.setUrlFilter('https://api.github.com/users/octocat');
-
-        glAngularHttpResponseErrorInterceptor.addFilter(httpResponseErrorRetryFilter, 'https://api.github.com/users/octocat');
+        glAngularHttpResponseErrorInterceptor.addFilter(filterConfig);
     }
 }

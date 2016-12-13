@@ -1,6 +1,7 @@
 ﻿'use strict';
 import {HttpResponseErrorRetryFilterFactory} from "./Filters/HttpResponseErrorRetryFilter";
 import {IHttpResponseErrorFilter} from "./Filters/IHttpResponseErrorFilter.d";
+import {IGLAngularHttpResponseErrorInterceptorFilter} from "./GLAngularHttpResponseErrorInterceptorFilter.d";
 
 export class GLAngularHttpResponseErrorInterceptor implements  angular.IHttpInterceptor {
     private filters: Array<IHttpResponseErrorFilter> = [];
@@ -9,11 +10,12 @@ export class GLAngularHttpResponseErrorInterceptor implements  angular.IHttpInte
     constructor() {
     }
 
-    public addFilter(filter: IHttpResponseErrorFilter, url: string = '*') {
-        if (url !== '*') {
-            filter.setUrlFilter(url);
+    public addFilter(filterConfig: IGLAngularHttpResponseErrorInterceptorFilter) {
+        if (filterConfig.url !== '*') {
+            filterConfig.filter.setUrlFilter(filterConfig.url);
         }
-        this.filters.push(filter);
+        filterConfig.filter.setStatusFilters(filterConfig.status);
+        this.filters.push(filterConfig.filter);
     }
 
     public responseError = (response): angular.IPromise<any> => {
