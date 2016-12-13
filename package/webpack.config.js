@@ -10,8 +10,9 @@ var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
     entry: [
-        './src/SecureFileStorageService.ts',
-        './src/SecureFileStorageServiceConfigProvider.ts'
+        './src/GLAngularHttpResponseErrorInterceptor.ts',
+        './src/Filters/HttpResponseErrorFilter.ts',
+        './src/Filters/HttpResponseErrorRetryFilter.ts'
     ],
     output: {
         path: path.join(__dirname, "dist"),
